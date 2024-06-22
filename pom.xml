@@ -43,7 +43,7 @@
     <servlet.version>4.0.4</servlet.version>
     <junit.version>4.13.2</junit.version>
     <jstl.version>1.2.5</jstl.version>
-    <hsqldb.version>2.7.2</hsqldb.version>
+    <hsqldb.version>2.7.3</hsqldb.version>
     <commons-dbcp2.version>2.12.0</commons-dbcp2.version>
     <aspectjweaver.version>1.9.22.1</aspectjweaver.version>
     <jackson.version>2.17.0</jackson.version>
@@ -669,14 +669,12 @@
             <phase>install</phase>
             <configuration>
               <target>
-                <echo
-                    message="making a copy for deployment: ${project.build.directory}/${project.artifactId}.${project.packaging} " />
+                <echo message="making a copy for deployment: ${project.build.directory}/${project.artifactId}.${project.packaging} "/>
                 <copy overwrite="true" verbose="true" toDir="${project.build.directory}">
                   <fileset dir="${project.build.directory}">
-                    <include name="${project.build.finalName}.${project.packaging}" />
+                    <include name="${project.build.finalName}.${project.packaging}"/>
                   </fileset>
-                  <globmapper from="${project.build.finalName}.${project.packaging}"
-                      to="${project.artifactId}.${project.packaging}" />
+                  <globmapper from="${project.build.finalName}.${project.packaging}" to="${project.artifactId}.${project.packaging}"/>
                 </copy>
               </target>
             </configuration>
@@ -791,18 +789,18 @@
 
         <!-- DTP/LS/license settings which can be set on Maven command line -->
         <parasoft.localsettings.dtp.enabled>false</parasoft.localsettings.dtp.enabled>
-        <parasoft.localsettings.dtp.url></parasoft.localsettings.dtp.url>
-        <parasoft.localsettings.dtp.user></parasoft.localsettings.dtp.user>
-        <parasoft.localsettings.dtp.password></parasoft.localsettings.dtp.password>
+        <parasoft.localsettings.dtp.url/>
+        <parasoft.localsettings.dtp.user/>
+        <parasoft.localsettings.dtp.password/>
         <parasoft.localsettings.license.network.use.specified.server>false</parasoft.localsettings.license.network.use.specified.server>
-        <parasoft.localsettings.license.network.url></parasoft.localsettings.license.network.url>
+        <parasoft.localsettings.license.network.url/>
         <parasoft.localsettings.license.network.auth.enabled>false</parasoft.localsettings.license.network.auth.enabled>
-        <parasoft.localsettings.license.network.user></parasoft.localsettings.license.network.user>
-        <parasoft.localsettings.license.network.password></parasoft.localsettings.license.network.password>
+        <parasoft.localsettings.license.network.user/>
+        <parasoft.localsettings.license.network.password/>
         <parasoft.localsettings.soatest.license.use_network>true</parasoft.localsettings.soatest.license.use_network>
         <parasoft.localsettings.soatest.license.network.edition>automation_edition</parasoft.localsettings.soatest.license.network.edition>
-        <parasoft.localsettings.soatest.license.custom_edition_features></parasoft.localsettings.soatest.license.custom_edition_features>
-        <parasoft.localsettings.soatest.license.local.password></parasoft.localsettings.soatest.license.local.password>
+        <parasoft.localsettings.soatest.license.custom_edition_features/>
+        <parasoft.localsettings.soatest.license.local.password/>
         <parasoft.localsettings.report.test_suites_only>false</parasoft.localsettings.report.test_suites_only>
       </properties>
       <build>
@@ -820,37 +818,37 @@
                 <configuration>
                   <target>
                     <!-- create dirs and assets -->
-                    <mkdir dir="${project.build.directory}/soatest" />
-                    <mkdir dir="${project.build.directory}/soatest/jdbc" />
-                    <mkdir dir="${project.build.directory}/soatest/reports" />
-                    <mkdir dir="${project.build.directory}/soatest/workspace" />
-                    <copy file="${org.hsqldb:hsqldb:jar}" tofile="${project.build.directory}/soatest/jdbc/hsqldb.jar" />
+                    <mkdir dir="${project.build.directory}/soatest"/>
+                    <mkdir dir="${project.build.directory}/soatest/jdbc"/>
+                    <mkdir dir="${project.build.directory}/soatest/reports"/>
+                    <mkdir dir="${project.build.directory}/soatest/workspace"/>
+                    <copy file="${org.hsqldb:hsqldb:jar}" tofile="${project.build.directory}/soatest/jdbc/hsqldb.jar"/>
                     <!-- create settings file -->
                     <propertyfile file="${soatest.settings}">
-                      <entry key="parasoft.eula.accepted" value="${parasoft.eula.accepted}" />
-                      <entry key="parasoft.localsettings.usage.reporting.enabled" value="${parasoft.localsettings.usage.reporting.enabled}" />
-                      <entry key="dtp.enabled" value="${parasoft.localsettings.dtp.enabled}" />
-                      <entry key="dtp.url" value="${parasoft.localsettings.dtp.url}" />
-                      <entry key="dtp.user" value="${parasoft.localsettings.dtp.user}" />
-                      <entry key="dtp.password" value="${parasoft.localsettings.dtp.password}" />
-                      <entry key="license.network.use.specified.server" value="${parasoft.localsettings.license.network.use.specified.server}" />
-                      <entry key="license.network.url" value="${parasoft.localsettings.license.network.url}" />
-                      <entry key="license.network.auth.enabled" value="${parasoft.localsettings.license.network.auth.enabled}" />
-                      <entry key="license.network.user" value="${parasoft.localsettings.license.network.user}" />
-                      <entry key="license.network.password" value="${parasoft.localsettings.license.network.password}" />
-                      <entry key="soatest.license.use_network" value="${parasoft.localsettings.soatest.license.use_network}" />
-                      <entry key="soatest.license.network.edition" value="${parasoft.localsettings.soatest.license.network.edition}" />
-                      <entry key="soatest.license.custom_edition_features" value="${parasoft.localsettings.soatest.license.custom_edition_features}" />
-                      <entry key="soatest.license.local.password" value="${parasoft.localsettings.soatest.license.local.password}" />
-                      <entry key="report.test_suites_only" value="${parasoft.localsettings.report.test_suites_only}" />
-                      <entry key="datasources.jdbc.classpath" value="${project.build.directory}/soatest/jdbc/hsqldb.jar" />
+                      <entry key="parasoft.eula.accepted" value="${parasoft.eula.accepted}"/>
+                      <entry key="parasoft.localsettings.usage.reporting.enabled" value="${parasoft.localsettings.usage.reporting.enabled}"/>
+                      <entry key="dtp.enabled" value="${parasoft.localsettings.dtp.enabled}"/>
+                      <entry key="dtp.url" value="${parasoft.localsettings.dtp.url}"/>
+                      <entry key="dtp.user" value="${parasoft.localsettings.dtp.user}"/>
+                      <entry key="dtp.password" value="${parasoft.localsettings.dtp.password}"/>
+                      <entry key="license.network.use.specified.server" value="${parasoft.localsettings.license.network.use.specified.server}"/>
+                      <entry key="license.network.url" value="${parasoft.localsettings.license.network.url}"/>
+                      <entry key="license.network.auth.enabled" value="${parasoft.localsettings.license.network.auth.enabled}"/>
+                      <entry key="license.network.user" value="${parasoft.localsettings.license.network.user}"/>
+                      <entry key="license.network.password" value="${parasoft.localsettings.license.network.password}"/>
+                      <entry key="soatest.license.use_network" value="${parasoft.localsettings.soatest.license.use_network}"/>
+                      <entry key="soatest.license.network.edition" value="${parasoft.localsettings.soatest.license.network.edition}"/>
+                      <entry key="soatest.license.custom_edition_features" value="${parasoft.localsettings.soatest.license.custom_edition_features}"/>
+                      <entry key="soatest.license.local.password" value="${parasoft.localsettings.soatest.license.local.password}"/>
+                      <entry key="report.test_suites_only" value="${parasoft.localsettings.report.test_suites_only}"/>
+                      <entry key="datasources.jdbc.classpath" value="${project.build.directory}/soatest/jdbc/hsqldb.jar"/>
                     </propertyfile>
                     <!-- make everything accessible to the docker container -->
-                    <chmod dir="${project.build.directory}/soatest" perm="go+rw" />
-                    <chmod dir="${project.build.directory}/soatest/jdbc" perm="go+rw" />
-                    <chmod dir="${project.build.directory}/soatest/reports" perm="go+rw" />
-                    <chmod dir="${project.build.directory}/soatest/workspace" perm="go+rw" />
-                    <chmod dir="${project.build.directory}/soatest" perm="go+rw" includes="**" />
+                    <chmod dir="${project.build.directory}/soatest" perm="go+rw"/>
+                    <chmod dir="${project.build.directory}/soatest/jdbc" perm="go+rw"/>
+                    <chmod dir="${project.build.directory}/soatest/reports" perm="go+rw"/>
+                    <chmod dir="${project.build.directory}/soatest/workspace" perm="go+rw"/>
+                    <chmod dir="${project.build.directory}/soatest" perm="go+rw" includes="**"/>
                   </target>
                 </configuration>
               </execution>
